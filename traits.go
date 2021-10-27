@@ -1,6 +1,6 @@
 package wxwork
 
-// IBody 可转化为 API 请求体的 trait
+// IBody 可转化为API请求体的trait
 type IBody interface {
 	intoBody() ([]byte, error)
 }
