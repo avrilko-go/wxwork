@@ -7,7 +7,7 @@ import (
 )
 
 // execMessageSend 消息推送发送
-func (w *WxApp) execMessageSend(req *reqMessage) (respMessageSend, error) {
+func (w *wxApp) execMessageSend(req *reqMessage) (respMessageSend, error) {
 	var resp respMessageSend
 	err := w.executeJSONPost("/cgi-bin/message/send", req, &resp, true)
 	if err != nil {
@@ -20,7 +20,7 @@ func (w *WxApp) execMessageSend(req *reqMessage) (respMessageSend, error) {
 }
 
 // executeJSONPost json post快捷方法
-func (w *WxApp) executeJSONPost(path string, req IBody, respObj interface{}, needAccessToken bool) error {
+func (w *wxApp) executeJSONPost(path string, req IBody, respObj interface{}, needAccessToken bool) error {
 	urlStr := w.createUrl(path, needAccessToken)
 
 	body, err := req.intoBody()
@@ -39,7 +39,7 @@ func (w *WxApp) executeJSONPost(path string, req IBody, respObj interface{}, nee
 }
 
 // createUrl 创建请求url
-func (w *WxApp) createUrl(path string, needAccessToken bool) string {
+func (w *wxApp) createUrl(path string, needAccessToken bool) string {
 	url := fmt.Sprintf("%s%s", DefaultAPIHost, path)
 	if needAccessToken {
 		url = fmt.Sprintf("%s?access_token=%s", url, w.getToken())

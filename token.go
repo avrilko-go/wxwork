@@ -22,7 +22,7 @@ type IToken interface {
 	GetToken() *TokenInfo
 }
 
-func (w *WxApp) getToken() string {
+func (w *wxApp) getToken() string {
 	w.token.lock.Lock()
 	defer w.token.lock.Unlock()
 	if w.token.expiresAt.Before(time.Now()) {

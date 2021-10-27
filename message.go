@@ -1,17 +1,17 @@
 package wxwork
 
 // SendTextMessage 发送文本消息
-func (w *WxApp) SendTextMessage(recipient *Recipient, content string, isSafe bool) error {
-	return w.SendMessage(recipient, "text", map[string]interface{}{"content": content}, isSafe)
+func (w *wxApp) SendTextMessage(recipient *Recipient, content string, isSafe bool) error {
+	return w.sendMessage(recipient, "text", map[string]interface{}{"content": content}, isSafe)
 }
 
 // SendImageMessage 发送图片消息
-func (w *WxApp) SendImageMessage(recipient *Recipient, mediaId string, isSafe bool) error {
-	return w.SendMessage(recipient, "image", map[string]interface{}{"media_id": mediaId}, isSafe)
+func (w *wxApp) SendImageMessage(recipient *Recipient, mediaId string, isSafe bool) error {
+	return w.sendMessage(recipient, "image", map[string]interface{}{"media_id": mediaId}, isSafe)
 }
 
 // SendMessage 发送消息基类
-func (w *WxApp) SendMessage(recipient *Recipient,
+func (w *wxApp) sendMessage(recipient *Recipient,
 	msgType string,
 	content map[string]interface{},
 	isSafe bool) error {

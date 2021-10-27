@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-type WxApp struct {
+type wxApp struct {
 	agentID    int64
 	corpID     string
 	corpSecret string
@@ -14,8 +14,8 @@ type WxApp struct {
 	client     *http.Client
 }
 
-func New(corpID, corpSecret string, agentID int64, opt ...AppOptionFunc) *WxApp {
-	w := &WxApp{agentID: agentID, corpID: corpID, corpSecret: corpSecret, client: &http.Client{}, token: NewTokenInfo("", time.Now().Add(-time.Hour))}
+func New(corpID, corpSecret string, agentID int64, opt ...AppOptionFunc) *wxApp {
+	w := &wxApp{agentID: agentID, corpID: corpID, corpSecret: corpSecret, client: &http.Client{}, token: NewTokenInfo("", time.Now().Add(-time.Hour))}
 	for _, fn := range opt {
 		fn(w)
 	}
