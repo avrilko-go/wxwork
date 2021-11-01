@@ -14,7 +14,12 @@ type wxApp struct {
 	client     *http.Client
 }
 
-func New(corpID, corpSecret string, agentID int64, opt ...AppOptionFunc) *wxApp {
+type WxApp interface {
+	SendTextMessage(recipient *Recipient, content string, isSafe bool) error
+	SendImageMessage(recipient *Recipient, mediaId string, isSafe bool) error
+}
+
+func New(corpID, corpSecret string, agentID int64, opt ...AppOptionFunc) WxApp {
 	w := &wxApp{agentID: agentID, corpID: corpID, corpSecret: corpSecret, client: &http.Client{}, token: NewTokenInfo("", time.Now().Add(-time.Hour))}
 	for _, fn := range opt {
 		fn(w)
