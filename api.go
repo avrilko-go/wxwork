@@ -22,8 +22,9 @@ func (w *wxApp) execMessageSend(req *reqMessage) (respMessageSend, error) {
 // executeJSONPost json post快捷方法
 func (w *wxApp) executeJSONPost(path string, req IBody, respObj interface{}, needAccessToken bool) error {
 	urlStr := w.createUrl(path, needAccessToken)
-
 	body, err := req.intoBody()
+	fmt.Println(string(body))
+
 	if err != nil {
 		return err
 	}

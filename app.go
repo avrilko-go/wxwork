@@ -17,6 +17,9 @@ type wxApp struct {
 type WxApp interface {
 	SendTextMessage(recipient *Recipient, content string, isSafe bool) error
 	SendImageMessage(recipient *Recipient, mediaId string, isSafe bool) error
+	SendCardMessage(recipient *Recipient, content *CardContent, isSafe bool) error
+	SendMpNewsMessage(recipient *Recipient, content []*Article, isSafe bool) error
+	SendMarkdownMessage(recipient *Recipient, content string, isSafe bool) error
 }
 
 func New(corpID, corpSecret string, agentID int64, opt ...AppOptionFunc) WxApp {
